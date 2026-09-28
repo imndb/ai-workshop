@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#1f2937"/>
+      <stop offset="1" stop-color="#0f1724"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g)"/>
+  <g fill="#ffffff" font-family="Inter, Arial, sans-serif" text-anchor="middle">
+    <text x="50%" y="40%" font-size="42" font-weight="700">Open WebUI — Knowledge / Workspace</text>
+    <rect x="80" y="220" width="800" height="180" rx="12" fill="#0b1220" opacity="0.6"/>
+    <text x="50%" y="310" font-size="28">Arbeitsbereich → Wissen → Erstellen</text>
+    <text x="50%" y="350" font-size="20" fill="#9aa6b2">Upload: PDF, TXT, Markdown — dann RAG nutzen</text>
+  </g>
+</svg>

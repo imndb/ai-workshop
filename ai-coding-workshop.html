@@ -204,7 +204,6 @@
   <section class="slide title-slide active" data-index="0">
     <div class="slide-inner">
       <div class="brand">🤖 AI Coding Workshop</div>
-      <h1>Wie Agentic Coding uns schneller macht</h1>
       <div class="subtitle">Sicher und kontrolliert — nicht als Ersatz für Architektur, Tests und Verantwortung</div>
       <div class="meta">AI Coding Workshop @ RAI</div>
     </div>
@@ -212,12 +211,12 @@
 
   <section class="slide" data-index="1">
     <div class="slide-inner">
+
       <h2 style="margin-top:0; margin-bottom:.35em;">Inspiration: Uncle Bob</h2>
+          <p class="quote" style="margin-top:1em; font-size:clamp(1rem,1.4vw,1.2rem);">YouTube Interview on AI: Uncle Bob on Software Fundamentals in the Age of AI</p>
       <div class="img-row">
-          <img src="uncle_bob_agents.jpg" alt="Uncle Bob Agents">
           <img src="uncle-bob.png" alt="Uncle Bob">
         </div>
-      <p class="quote" style="margin-top:1em; font-size:clamp(1rem,1.4vw,1.2rem);">YouTube Interview on AI: Uncle Bob on Software Fundamentals in the Age of AI</p>
     </div>
   </section>
 
@@ -329,7 +328,7 @@
       <div class="tag">Konzept 1 von 9</div>
       <h2>Was ist ein LLM?</h2>
       <div class="body">
-        <p>Ein <b>Large Language Model</b> ist ein neuronales Netz, trainiert auf riesigen Textmengen. Es sagt jeweils das <b>wahrscheinlichste nächste Token</b> voraus — es „weiss" nichts, es <b>rechnet Wahrscheinlichkeiten</b>.</p>
+        <p>Ein <b>Large Language Model</b> ist ein neuronales Netz, trainiert auf riesigen Daten. Es sagt jeweils das <b>wahrscheinlichste nächste Token</b> voraus — es „weiss" nichts, es <b>rechnet Wahrscheinlichkeiten</b>.</p>
         <div class="callout"><b style="color:#fff;">Beispiel:</b> „Der Himmel ist ___" → Modell schlägt „blau" vor, weil diese Fortsetzung in den Trainingsdaten am häufigsten vorkam.</div>
         <p style="margin-top:.9em;"><b>Für die Praxis wichtig:</b></p>
         <ul class="bullets">
@@ -346,12 +345,38 @@
       <h2>Tokens &amp; Context Window</h2>
       <div class="body">
         <ul class="bullets">
-          <li>Text wird in <b>Tokens</b> zerlegt (grob: 1 Token ≈ 4 Zeichen)</li>
+          <li>Ein Wort braucht mehrere <b>Tokens</b></li>
           <li>Beispiel: „Kontoauszug" → drei Tokens: <code>Kon</code> <code>to</code> <code>auszug</code></li>
           <li><b>Context Window</b> = Kurzzeitgedächtnis des Modells: alles, was es in einer Anfrage „sieht"</li>
           <li>Ist das Fenster voll, wird älterer Inhalt komprimiert oder vergessen (<b>Compaction</b>)</li>
         </ul>
-        <div class="callout"><b style="color:#fff;">Praxis-Tipp:</b> Sessions unter ca. 100k Tokens halten — <code>/context</code>, <code>/compact "wichtige Entscheidungen behalten"</code>, <code>/clear</code>.</div>
+        <div class="callout"><b style="color:#fff;">Praxis-Tipp:</b> Sessions unter ca. 100k Tokens halten — <code>/context</code>, <code>/compact "wichtige Entscheidungen behalten"</code>, <code>/clear</code>. oder SubAgents verwenden.</div>
+        <div class="callout"><b style="color:#fff;">
+xx:<table>
+  <thead>
+    <tr>
+      <th><b>Artefakt</b></th>
+      <th><b>grobe Tokenmenge</b></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>1 Java-Klasse, ~200 Zeilen</b></td>
+      <td><b>2.000–3.000</b></td>
+    </tr>
+  
+    <tr>
+      <td><b><code>mvn test</code>-Log mit Stacktrace</b></td>
+      <td><b>3.000–20.000</b></td>
+    </tr>
+    <tr>
+      <td><b>Ein mittelgrosses Repo komplett</b></td>
+      <td><b>500.000+ → passt nie rein</b></td>
+    </tr>
+  </tbody>
+</table>          
+        </b></div>
+
       </div>
     </div>
   </section>
@@ -367,6 +392,9 @@
           <b style="color:#fff;">Beispiel:</b> „Füge einen Test für die Zinsberechnung hinzu."<br>
           → Agent liest <code>ZinsService.java</code> → schreibt Test → führt <code>mvn test</code> aus →
           sieht Fehler → korrigiert → wiederholt, bis grün.
+        </div>
+         <div class="callout">
+          <b style="color:#fff;"></b> „Agent, füge einen Endpoint /greeting?name=X hinzu, inklusive MockMvc-Test, und sorge dafür, dass mvn test grün ist."<br>
         </div>
         <p style="margin-top:.7em;">Der Loop läuft <b>autonom</b> — der Mensch setzt das Ziel und prüft das Ergebnis.</p>
       </div>
@@ -537,13 +565,17 @@ Gib keine Rohdaten oder Log-Auszüge zurück, nur die Zusammenfassung.
 
   <section class="slide" data-index="21">
     <div class="slide-inner">
-      <h2>Nächste Schritte</h2>
+      <h2>Messkriterien:</h2>
       <div class="body">
         <ul class="bullets">
-          <li>AI-Readiness-Score pro Repo erheben</li>
-          <li><code>AGENTS.md</code>/<code>CLAUDE.md</code> in aktiven Repos anlegen</li>
-          <li>Erstes <code>SKILL.md</code>-Template im Team-Space ablegen</li>
-          <li>Guardrails definieren: Team-Standard für <code>permissions-config.json</code></li>
+          <li>Review-Dauer pro PR</li>
+          <li>Anteil AI-generierter Zeilen (grob)</li>
+          <li>Bug-Rate / Rollback-Rate nach Deployment</li>
+          <li>Lead Time von Commit bis Merge</li>
+          
+
+
+
         </ul>
       </div>
     </div>
